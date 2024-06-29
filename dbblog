@@ -1,0 +1,116 @@
+CREATE DATABASE  IF NOT EXISTS `blog` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `blog`;
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+--
+-- Host: localhost    Database: blog
+-- ------------------------------------------------------
+-- Server version	8.0.31
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `descripition` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (5,'Art','art'),(6,'Comida','essa é uma categoria dedica a comida'),(7,'Artes','artes');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `posts`
+--
+
+DROP TABLE IF EXISTS `posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `posts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `body` text,
+  `thumbnail` varchar(255) DEFAULT NULL,
+  `date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `category_id` int unsigned DEFAULT NULL,
+  `author_id` int unsigned DEFAULT NULL,
+  `is_featured` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_blog_author` (`author_id`),
+  KEY `FK_blog_category` (`category_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `posts`
+--
+
+LOCK TABLES `posts` WRITE;
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES (11,'teste do index','It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content here, content here&#039;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#039;lorem ipsum&#039; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#039;Content here, content here&#039;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#039;lorem ipsum&#039; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).','1719071351Monument_Valley.jpg','2024-06-22 15:49:11',5,6,1),(12,'novo post','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\r\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.','1719453654Imagem-de-fundo-4k-Itachi-Uchiha-para-tela-de-computador-1024x724.png','2024-06-27 02:00:54',7,6,0),(13,'texxxxx','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia pellentesque metus maximus hendrerit. Quisque gravida nunc vel libero finibus, id fringilla magna lobortis. Etiam condimentum sapien non porttitor consequat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis ut urna a turpis vulputate ornare. Morbi rhoncus in massa in lacinia. Fusce ac lorem eleifend, ultrices eros et, euismod elit.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec ipsum et diam eleifend aliquet ut vel magna. Sed luctus volutpat velit efficitur fringilla. Morbi in metus suscipit mi ultrices commodo vitae sit amet sem. Quisque ullamcorper tincidunt justo, vel vehicula lacus pretium et. Donec pharetra felis odio, vitae tincidunt augue fringilla a. Integer maximus velit augue, quis scelerisque purus sodales non. Mauris viverra nibh vitae augue mattis, et luctus ipsum convallis.\r\n\r\nIn non mauris nunc. Mauris eu justo a dolor facilisis sagittis sit amet vitae est. In vel eros nec nulla tincidunt sollicitudin. Phasellus varius ante eu metus accumsan dictum. Sed ac nunc nec orci iaculis ultricies. Cras placerat ligula eu nulla convallis, in laoreet ex luctus. Quisque in ullamcorper lacus. Vestibulum sit amet felis accumsan, euismod ipsum eget, convallis dui. Proin dignissim tincidunt augue a ullamcorper. Curabitur tincidunt mi a urna viverra, sit amet gravida eros sollicitudin. Suspendisse tempor nunc nec rhoncus accumsan. Morbi hendrerit sit amet tortor in hendrerit. Morbi lacinia id nunc nec lobortis. Maecenas nec lobortis est, eu mattis urna.','1719510239transferir.jpeg','2024-06-27 17:43:59',6,1,0),(14,'leydinha','queridos leitores, aqui sou eu mesma. leydiwistondow hahahaha','17195288880B121DA3-D875-4894-8A49-CA744B6FD3B9.jpg','2024-06-27 22:54:48',5,8,0);
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `firtsname` varchar(50) DEFAULT NULL,
+  `lastname` varchar(50) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `is_admin` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Jane','doe','jane','jane@doe.com','$2y$10$OSiwder4NE3aclSDHFnpQOcVk9Ws2rkMxfLuxCPpgG8VIPLmLpx0y','1711119280avatar6.jpg',1),(7,'Chico','Moedas','Moedas','chiquinho@teste.com','$2y$10$VN4VzFvIAXqy0hpFdNVNaO6mRw695uvd1L1XZWIbBaOINiUk2LQNq','1712837511avatar8.jpg',0),(6,'Matheus','Basilio','mathpravcs','matheus@teste.com','$2y$10$UZ7h88vWmayoXSRdoHwX9.eYrjpbkS3nOH.VR8lcOsYirO28nvIrW','1712837464avatar2.jpg',1),(8,'gresilda','silva','silvagresilda','silvagresilda@gmail.com','$2y$10$HSJevQuFZVGDR9nyQyabeeWKGP.9bRdxG9p8GPGmRD3kOz4DzAKVW','17195287820B80725E-4AF3-46C3-B006-85BB9BDE7A69.jpg',0);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-06-28 21:33:24
